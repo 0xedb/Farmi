@@ -55,7 +55,6 @@ public class Search_PageController implements Initializable {
         doSearch();
     }
 
-    @FXML
     private void search(InputMethodEvent event) {
         doSearch();
     }
@@ -64,6 +63,7 @@ public class Search_PageController implements Initializable {
         doSearch();
     }
 
+    @FXML
    public void doSearch() {
        try {
             data = FXCollections.observableArrayList();

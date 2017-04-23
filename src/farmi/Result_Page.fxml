@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="796.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farmi.Result_PageController">
+   <children>
+      <ImageView fitHeight="1406.0" fitWidth="1440.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/vet_landing.png" />
+         </image>
+      </ImageView>
+      <Pane layoutY="-19.0" prefHeight="822.0" prefWidth="733.0">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="324.0" layoutY="148.0" prefHeight="39.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-radius: 08; -fx-background-color: #05497A;" text="🔍" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

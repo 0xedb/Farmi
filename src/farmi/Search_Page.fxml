@@ -24,7 +24,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="192.0" layoutY="101.0" maxWidth="350.0" minWidth="242.0" onInputMethodTextChanged="#search" prefHeight="38.0" prefWidth="350.0" promptText="Search">
+            <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="192.0" layoutY="101.0" maxWidth="350.0" minWidth="242.0" onKeyPressed="#doSearch" onKeyReleased="#doSearch" onKeyTyped="#doSearch" prefHeight="38.0" prefWidth="350.0" promptText="Search">
                <font>
                   <Font size="19.0" />
                </font>
