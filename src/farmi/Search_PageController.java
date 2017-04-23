@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,13 +26,15 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+
+
 /**
  * FXML Controller class
  *
  * @author bruno
  */
 public class Search_PageController implements Initializable {
-
+    String veg;
 
     private ObservableList<Information> data;
     private DatabaseConnection dc;
@@ -94,7 +97,7 @@ public class Search_PageController implements Initializable {
     @FXML
     private void info(ActionEvent event) {
         int index = resultTable.getSelectionModel().getSelectedIndex();
-        String veg = resultTable.getItems().get(index).getVegName();
+        veg = resultTable.getItems().get(index).getVegName();
         
         Stage resultStage;
         resultStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -102,5 +105,6 @@ public class Search_PageController implements Initializable {
         window.change().show();
     }
 
+    
     
 }
