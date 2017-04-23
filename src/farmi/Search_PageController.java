@@ -17,11 +17,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -41,6 +43,11 @@ public class Search_PageController implements Initializable {
     private TableColumn<?, ?> result;
     @FXML
     private JFXButton search;
+    @FXML
+    private JFXButton seeResult;
+    
+    ChangeWindow window;
+    
     
     /**
      * Initializes the controller class.
@@ -83,6 +90,17 @@ public class Search_PageController implements Initializable {
 
         resultTable.setItems(data);
    }
+
+    @FXML
+    private void info(ActionEvent event) {
+        int index = resultTable.getSelectionModel().getSelectedIndex();
+        String veg = resultTable.getItems().get(index).getVegName();
+        
+        Stage resultStage;
+        resultStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window = new ChangeWindow("Result_Page.fxml", veg, resultStage);
+        window.change().show();
+    }
 
     
 }
