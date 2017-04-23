@@ -6,13 +6,20 @@
 package farmi;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 
@@ -23,13 +30,18 @@ import javafx.scene.input.KeyEvent;
  */
 public class Search_PageController implements Initializable {
 
+
+    private ObservableList<Information> data;
+    private DatabaseConnection dc;
+    @FXML
+    private JFXTextField txtSearch;
+    @FXML
+    private TableView<Information> resultTable;
+    @FXML
+    private TableColumn<?, ?> result;
     @FXML
     private JFXButton search;
-    @FXML
-    private TreeTableView<?> resultTable;
-    @FXML
-    private TreeTableColumn<?, ?> result;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -40,14 +52,37 @@ public class Search_PageController implements Initializable {
 
     @FXML
     private void search(ActionEvent event) {
+        doSearch();
     }
 
     @FXML
     private void search(InputMethodEvent event) {
+        doSearch();
     }
 
-    @FXML
     private void search(KeyEvent event) {
+        doSearch();
     }
+
+   public void doSearch() {
+       try {
+            data = FXCollections.observableArrayList();
+            dc = new DatabaseConnection();
+            Connection conn = dc.connect();
+
+            ResultSet rs = conn.createStatement().executeQuery("select VegName from vegetable where VegName like '%" + txtSearch.getText() + "%'");
+            while (rs.next()) {
+                data.add(new Information(rs.getString("VegName")));                
+            }
+
+        } catch (SQLException ex) {
+            //error occured
+        }
+
+        result.setCellValueFactory(new PropertyValueFactory<>("VegName"));
+
+        resultTable.setItems(data);
+   }
+
     
 }

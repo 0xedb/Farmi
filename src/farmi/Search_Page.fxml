@@ -2,8 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,21 +19,21 @@
       </ImageView>
       <Pane layoutY="-19.0" prefHeight="822.0" prefWidth="733.0">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="324.0" layoutY="148.0" prefHeight="39.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-radius: 08; -fx-background-color: #05497A;" text="🔍" textFill="WHITE">
+            <JFXButton fx:id="search" buttonType="RAISED" layoutX="324.0" layoutY="148.0" onAction="#search" prefHeight="39.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-radius: 08; -fx-background-color: #05497A;" text="🔍" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField labelFloat="true" layoutX="192.0" layoutY="101.0" maxWidth="350.0" minWidth="242.0" prefHeight="38.0" prefWidth="350.0" promptText="Search">
+            <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="192.0" layoutY="101.0" maxWidth="350.0" minWidth="242.0" onInputMethodTextChanged="#search" prefHeight="38.0" prefWidth="350.0" promptText="Search">
                <font>
                   <Font size="19.0" />
                </font>
             </JFXTextField>
-            <TreeTableView blendMode="MULTIPLY" layoutX="127.0" layoutY="223.0" prefHeight="409.0" prefWidth="480.0">
+            <TableView fx:id="resultTable" blendMode="MULTIPLY" layoutX="99.0" layoutY="262.0" prefHeight="463.0" prefWidth="536.0">
               <columns>
-                <TreeTableColumn prefWidth="479.0" text="Result" />
+                <TableColumn fx:id="result" prefWidth="535.0" text="Result" />
               </columns>
-            </TreeTableView>
+            </TableView>
          </children>
       </Pane>
    </children>
