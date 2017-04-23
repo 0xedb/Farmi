@@ -18,17 +18,29 @@
       </ImageView>
       <Pane layoutY="-19.0" prefHeight="822.0" prefWidth="733.0">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="534.0" layoutY="362.0" prefHeight="39.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-radius: 08; -fx-background-color: #05497A;" text="🔍" textFill="WHITE">
+            <JFXButton fx:id="back" buttonType="RAISED" layoutX="425.0" layoutY="287.0" onAction="#goBack" prefHeight="39.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-radius: 08; -fx-background-color: #05497A;" text="❌" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="369.0" layoutY="29.0" prefHeight="56.0" prefWidth="306.0" style="-fx-background-color: #69A4C4;" text="Name" />
-            <Label layoutX="369.0" layoutY="91.0" prefHeight="39.0" prefWidth="306.0" style="-fx-background-color: #69A4C4;" text="Weather" />
-            <Label layoutX="369.0" layoutY="147.0" prefHeight="39.0" prefWidth="306.0" style="-fx-background-color: #69A4C4;" text="Soil" />
-            <Label layoutX="369.0" layoutY="198.0" prefHeight="39.0" prefWidth="306.0" style="-fx-background-color: #69A4C4;" text="Disease" />
-            <ImageView fitHeight="212.0" fitWidth="277.0" layoutX="10.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXTextArea blendMode="MULTIPLY" layoutX="111.0" layoutY="597.0" wrapText="true" />
+            <Label fx:id="vegName" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="29.0" prefHeight="56.0" prefWidth="306.0" text="Lettuce" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="vegSoil" layoutX="369.0" layoutY="91.0" prefHeight="39.0" prefWidth="306.0" text="Soil" />
+            <Label fx:id="vegWeather" layoutX="369.0" layoutY="129.0" prefHeight="39.0" prefWidth="306.0" text="Weather" />
+            <Label fx:id="vegHarvest" layoutX="369.0" layoutY="169.0" prefHeight="39.0" prefWidth="306.0" text="Harvest" />
+            <ImageView fx:id="vegImage" fitHeight="267.0" fitWidth="282.0" layoutX="10.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXTextArea fx:id="vegProcess" blendMode="MULTIPLY" layoutX="40.0" layoutY="535.0" maxWidth="653.0" minWidth="586.0" prefHeight="246.0" prefWidth="653.0" wrapText="true" />
+            <Label fx:id="vegPest" layoutX="369.0" layoutY="208.0" prefHeight="39.0" prefWidth="306.0" text="Pest" />
+            <Label fx:id="vegPesticide" layoutX="369.0" layoutY="248.0" prefHeight="39.0" prefWidth="167.0" text="Pesticide" />
+            <Label fx:id="vegPesticidePrice" layoutX="584.0" layoutY="248.0" prefHeight="39.0" prefWidth="78.0" text="₵" />
+            <Label fx:id="vegDisease" layoutX="40.0" layoutY="316.0" prefHeight="39.0" prefWidth="167.0" text="Disease" />
+            <Label fx:id="vegDiseaseChem" layoutX="40.0" layoutY="362.0" prefHeight="39.0" prefWidth="167.0" text="Chemical" />
+            <Label fx:id="vegChemComp" layoutX="40.0" layoutY="401.0" prefHeight="39.0" prefWidth="167.0" text="Company" />
+            <Label fx:id="vegMarket" layoutX="40.0" layoutY="470.0" prefHeight="39.0" prefWidth="167.0" text="Market" />
+            <Label fx:id="vegMarketPrice" layoutX="228.0" layoutY="470.0" prefHeight="39.0" prefWidth="78.0" text="₵" />
          </children>
       </Pane>
    </children>
