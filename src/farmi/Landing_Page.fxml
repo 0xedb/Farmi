@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="796.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farmi.Landing_PageController">
+   <children>
+      <Pane layoutX="-10.0" layoutY="-7.0" opacity="0.09" prefHeight="814.0" prefWidth="743.0">
+         <children>
+            <ImageView fitHeight="1406.0" fitWidth="1440.0" layoutX="-257.0" layoutY="-200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/vet_landing.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutY="-19.0" prefHeight="822.0" prefWidth="733.0">
+         <children>
+            <ImageView fitHeight="823.0" fitWidth="725.0" layoutY="12.0" pickOnBounds="true">
+               <image>
+                  <Image url="@images/farmi.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="389.0" layoutY="158.0" prefHeight="78.0" prefWidth="150.0" text="Farmi" textFill="#830d0d">
+               <font>
+                  <Font name="Papyrus" size="52.0" />
+               </font></Label>
+            <Pane blendMode="MULTIPLY" layoutX="-3.0" layoutY="662.0" opacity="0.4" prefHeight="28.0" prefWidth="733.0" style="-fx-background-color: #5A5A5A;" />
+            <Pane blendMode="MULTIPLY" layoutX="-2.0" layoutY="676.0" opacity="0.4" prefHeight="28.0" prefWidth="733.0" style="-fx-background-color: #9A3F3F;" />
+            <Pane blendMode="MULTIPLY" layoutY="695.0" opacity="0.4" prefHeight="28.0" prefWidth="733.0" style="-fx-background-color: #9A3F3F;" />
+            <JFXButton fx:id="go" buttonType="RAISED" layoutX="338.0" layoutY="749.0" onAction="#moveToSearch" prefHeight="37.0" prefWidth="86.0" ripplerFill="WHITE" style="-fx-background-radius: 14; -fx-background-color: #05497A;" text="GO &gt;&gt;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <JFXSpinner layoutX="354.0" layoutY="41.0" radius="18.0" />
+      <JFXSpinner layoutX="391.0" layoutY="41.0" nodeOrientation="RIGHT_TO_LEFT" radius="18.0" />
+      <JFXSpinner layoutX="318.0" layoutY="41.0" nodeOrientation="RIGHT_TO_LEFT" radius="18.0" />
+   </children>
+</AnchorPane>
