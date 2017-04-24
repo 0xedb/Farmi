@@ -89,13 +89,13 @@ public class Result_PageController implements Initializable {
         try {
             dc = new DatabaseConnection();
             Connection con = dc.connect();
-            String veg = Search_PageController.getTitle();
-            vegName.setText(veg);
-            ResultSet rs = con.createStatement().executeQuery("select soil, weather, farmingProcess"
-                    + ", harvesting_period, picture from vegetable "
-                    + "where VegName = '" + veg + "'");
+            
+            ResultSet rs = con.createStatement().executeQuery("select soil, weather, harvesting_period, picture from vegetable "
+                    + "where VegName = '" + Search_PageController.getTitle() + "'");
             if (rs.next()) {
+                System.out.println(rs.getString("picture"));
                 Image vegPic = new Image(rs.getString("picture"));
+                vegName.setText(Search_PageController.getTitle());
                 vegSoil.setText(rs.getString("soil"));
                 vegWeather.setText(rs.getString("weather"));
                 vegHarvest.setText(rs.getString("harvesting_period"));
