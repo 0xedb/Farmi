@@ -60,8 +60,7 @@ public class Result_PageController implements Initializable {
     @FXML
     private Label vegMarketPrice;
     
-    ChangeWindow window;
-    
+    ChangeWindow window;    
     Stage searchScreen;
     String v;
     private DatabaseConnection dc;
