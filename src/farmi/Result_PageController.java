@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -70,11 +71,7 @@ public class Result_PageController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("here~~~~~~~~~~~~~~~~~~~~");
-        
-        System.out.println("here~ too~~~~~~~~~~~~~~~~~~~");
-        
+    public void initialize(URL url, ResourceBundle rb) {        
         getAllInfo();
 
     }    
@@ -92,13 +89,17 @@ public class Result_PageController implements Initializable {
         try {
             dc = new DatabaseConnection();
             Connection con = dc.connect();
-            System.out.println("got to conn");
-            System.out.println("all the way here!!");
-            ResultSet rs = con.createStatement().executeQuery("select soil from vegetable where VegName = '" + Search_PageController.getTitle() + "'");
+            String veg = Search_PageController.getTitle();
+            vegName.setText(veg);
+            ResultSet rs = con.createStatement().executeQuery("select soil, weather, farmingProcess"
+                    + ", harvesting_period, picture from vegetable "
+                    + "where VegName = '" + veg + "'");
             if (rs.next()) {
-                String pass = rs.getString("soil");
-                vegSoil.setText(pass);
-                System.out.println(pass);
+                Image vegPic = new Image(rs.getString("picture"));
+                vegSoil.setText(rs.getString("soil"));
+                vegWeather.setText(rs.getString("weather"));
+                vegHarvest.setText(rs.getString("harvesting_period"));
+                vegImage.setImage(vegPic);
 
             }
         } catch (SQLException e) {
