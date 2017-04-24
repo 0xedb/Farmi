@@ -17,7 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -63,6 +65,8 @@ public class Result_PageController implements Initializable {
     Stage searchScreen;
     String v;
     private DatabaseConnection dc;
+    @FXML
+    private AnchorPane resultScreen;
     
 
     /**
@@ -93,8 +97,9 @@ public class Result_PageController implements Initializable {
             String v = Search_PageController.getTitle();
             ResultSet rs1 = con.createStatement().executeQuery("select insect from destroys where vegetable = '" + v + "'");            
             if (rs.next()) {
-                //String path = "" + rs.getString("picture");
-                //Image vegPic = new Image(rs.getString("picture"), 282, 267, true, true);
+                String path = "images/" + rs.getString("picture");
+                Image pic = new Image(Result_PageController.class.getResourceAsStream(path));
+                vegImage.setImage((pic));
                 vegName.setText(Search_PageController.getTitle());
                 vegSoil.setText(rs.getString("soil"));
                 vegWeather.setText(rs.getString("weather"));
@@ -110,14 +115,21 @@ public class Result_PageController implements Initializable {
                 ResultSet rs4 = con.createStatement().executeQuery("select disease from affects where vegetable = '" + v + "'");
                 if (rs4.next())
                     vegDisease.setText(rs4.getString("disease"));
-                //
                 ResultSet rs5 = con.createStatement().executeQuery("select chemical from treats where disease = '" + rs4.getString("disease") + "'");
                 if (rs5.next())
                     vegDiseaseChem.setText(rs5.getString("chemical"));
-                ResultSet rs6 = con.createStatement().executeQuery("select chemical from treats where disease = '" + rs4.getString("disease") + "'");
+                ResultSet rs6 = con.createStatement().executeQuery("select company from chemicals where chemicalName = '" + rs5.getString("chemical") + "'");
                 if (rs6.next())
-                    vegChemComp.setText(rs5.getString("chemical"));
-                //vegImage.setImage(vegPic);
+                    vegChemComp.setText(rs6.getString("company"));
+                ResultSet rs7 = con.createStatement().executeQuery("select market from sold_in where vegetable = '" + v + "'");
+                if (rs7.next())
+                    vegMarket.setText(rs7.getString("market"));
+                ResultSet rs8 = con.createStatement().executeQuery("select price from market where marketName = '" + rs7.getString("market") + "'");
+                if (rs8.next())
+                    vegMarketPrice.setText("₵" + rs8.getString("price"));
+                ResultSet rs9 = con.createStatement().executeQuery("select farmingProcess from vegetable where vegName = '" + v + "'");
+                if (rs9.next())
+                    vegProcess.setText(rs9.getString("farmingProcess"));
 
             }
         } catch (SQLException e) {
