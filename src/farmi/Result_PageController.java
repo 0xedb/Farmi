@@ -62,6 +62,7 @@ public class Result_PageController implements Initializable {
     ChangeWindow window;
     
     Stage searchScreen;
+    String v;
     private DatabaseConnection dc;
     
 
@@ -73,21 +74,12 @@ public class Result_PageController implements Initializable {
         System.out.println("here~~~~~~~~~~~~~~~~~~~~");
         
         System.out.println("here~ too~~~~~~~~~~~~~~~~~~~");
-        try {
-            Connection conn = dc.connect();
-            Statement sm = conn.createStatement();
-            ResultSet rs = sm.executeQuery("select * from vegetable where VegName = '" + searchScreen.getTitle() + "'");
-            if (rs.next()) {
-                String pass = rs.getString("soil");
-                vegSoil.setText(pass);
-                System.out.println(pass);           
-                
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-//        getAllInfo();
+        
+        getAllInfo();
+
     }    
+    
+    
 
     @FXML
     private void goBack(ActionEvent event) {
@@ -95,21 +87,23 @@ public class Result_PageController implements Initializable {
         window = new ChangeWindow("Search_Page.fxml", "Search!", searchScreen);
         window.change().show();
     }
-    
-//    private void getAllInfo() {
-//        try {
-//            Connection conn = dc.connect();
-//            Statement sm = conn.createStatement();
-//            ResultSet rs = sm.executeQuery("select * from vegetable where VegName = '" + searchScreen.getTitle() + "'");
-//            if (rs.next()) {
-//                String pass = rs.getString("soil");
-//                vegSoil.setText(pass);
-//                System.out.println(pass);           
-//                
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+    private void getAllInfo() {
+        try {
+            dc = new DatabaseConnection();
+            Connection con = dc.connect();
+            System.out.println("got to conn");
+            System.out.println("all the way here!!");
+            ResultSet rs = con.createStatement().executeQuery("select soil from vegetable where VegName = '" + Search_PageController.getTitle() + "'");
+            if (rs.next()) {
+                String pass = rs.getString("soil");
+                vegSoil.setText(pass);
+                System.out.println(pass);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
 }
