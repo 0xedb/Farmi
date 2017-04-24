@@ -11,14 +11,12 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -92,14 +90,34 @@ public class Result_PageController implements Initializable {
             
             ResultSet rs = con.createStatement().executeQuery("select soil, weather, harvesting_period, picture from vegetable "
                     + "where VegName = '" + Search_PageController.getTitle() + "'");
+            String v = Search_PageController.getTitle();
+            ResultSet rs1 = con.createStatement().executeQuery("select insect from destroys where vegetable = '" + v + "'");            
             if (rs.next()) {
-                System.out.println(rs.getString("picture"));
-                Image vegPic = new Image(rs.getString("picture"));
+                //String path = "" + rs.getString("picture");
+                //Image vegPic = new Image(rs.getString("picture"), 282, 267, true, true);
                 vegName.setText(Search_PageController.getTitle());
                 vegSoil.setText(rs.getString("soil"));
                 vegWeather.setText(rs.getString("weather"));
                 vegHarvest.setText(rs.getString("harvesting_period"));
-                vegImage.setImage(vegPic);
+                if (rs1.next())
+                    vegPest.setText(rs1.getString("insect"));
+                ResultSet rs2 = con.createStatement().executeQuery("select pesticide from prevents where insect = '" + rs1.getString("insect") + "'");
+                if (rs2.next())
+                    vegPesticide.setText(rs2.getString("pesticide"));
+                ResultSet rs3 = con.createStatement().executeQuery("select priceOfPesticide from pesticides where pesticideName = '" + rs2.getString("pesticide") + "'");
+                if (rs3.next())
+                    vegPesticidePrice.setText("₵" + rs3.getString("priceOfPesticide"));
+                ResultSet rs4 = con.createStatement().executeQuery("select disease from affects where vegetable = '" + v + "'");
+                if (rs4.next())
+                    vegDisease.setText(rs4.getString("disease"));
+                //
+                ResultSet rs5 = con.createStatement().executeQuery("select chemical from treats where disease = '" + rs4.getString("disease") + "'");
+                if (rs5.next())
+                    vegDiseaseChem.setText(rs5.getString("chemical"));
+                ResultSet rs6 = con.createStatement().executeQuery("select chemical from treats where disease = '" + rs4.getString("disease") + "'");
+                if (rs6.next())
+                    vegChemComp.setText(rs5.getString("chemical"));
+                //vegImage.setImage(vegPic);
 
             }
         } catch (SQLException e) {
